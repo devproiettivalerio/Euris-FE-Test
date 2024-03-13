@@ -1,9 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @Component({
   selector: 'app-theme-select',
-  standalone: false,
+  standalone: true,
+  imports:[SharedModule],
   templateUrl: './theme-select.component.html',
   styleUrl: './theme-select.component.scss',
 })
@@ -30,7 +32,6 @@ export class ThemeSelectComponent implements OnInit {
 
   CheckTheme(){
     if (this.currentThemes == 'dark') {
-      console.log(this.currentThemes);
       this.renderer.removeClass(this.document.body, 'dark');
       localStorage.setItem('themeMode', this.currentThemes);
       this.currentThemes = '';

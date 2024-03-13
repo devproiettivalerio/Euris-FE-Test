@@ -1,22 +1,24 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroup, FormArray} from '@angular/forms';
 
 
 import { FormBuilder } from '@angular/forms';
-import { max } from 'rxjs';
 import { ProductItemDTO } from '../../models/product-item-dto';
 import { FormGroupOf } from '../../../../core/core.module';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @Component({
   selector: 'app-product-item-fields',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule,SharedModule],
   templateUrl: './product-item-fields.component.html',
   styleUrl: './product-item-fields.component.scss',
 })
 export class ProductItemFieldsComponent {
   @Input({ required: true }) item: any;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor() {}
 
   @Input()
   set value(v: ProductItemDTO | null) {

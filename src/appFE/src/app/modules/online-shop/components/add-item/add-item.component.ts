@@ -1,14 +1,18 @@
-import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { ProductItemDTO, ShopPayload } from '../../models/product-item-dto';
-import { delay, of } from 'rxjs';
-import { StoreService } from '../../services/store.service';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+
+import { SharedModule } from '../../../../shared/shared.module';
+
 import { environment } from '../../../../../environments/environment';
+import { ProductItemDTO, ShopPayload } from '../../models/product-item-dto';
+import { StoreService } from '../../services/store.service';
 import { AuthService } from '../../../../core/services/auth-service.service';
-/**
- * @title Injecting data when opening a dialog
- */
+
+import { ProductItemFieldsComponent } from '../../forms/product-item-fields/product-item-fields.component';
+
 @Component({
   selector: 'app-add-item',
+  standalone: true,
+  imports: [SharedModule,ProductItemFieldsComponent],
   templateUrl: './add-item.component.html',
   styleUrl: './add-item.component.scss',
 })
@@ -18,16 +22,11 @@ export class AddItemComponent {
 
   @ViewChild('newProductForm') public productForm: any;
   item: ShopPayload<ProductItemDTO> | undefined;
-  /*
-  readonly item$ = of(<ShopPayload<ProductItemDTO>>{
-    id: 'mock',
-    data: {
-      title: 'mock',
-    },
-  }).pipe(delay(300)); // Mocks backend call
-*/
 
-  constructor(private authService: AuthService,private storeService: StoreService) {}
+  constructor(
+    private authService: AuthService,
+    private storeService: StoreService
+  ) {}
 
   CancelForm() {
     {
@@ -36,9 +35,8 @@ export class AddItemComponent {
     }
   }
   AddItem(item: ProductItemDTO) {
-
     // Validazione stato request
-    let product=item;
+    let product = item;
     product.employee = this.authService.GetCurrentUser()!;
     product.reviews = undefined;
     const raw = JSON.stringify(product);
@@ -57,6 +55,5 @@ export class AddItemComponent {
         this.ItemAddedEvent.emit(event);
         this.CancelForm();
       });
-
   }
 }

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChartItemsComponent } from './chart-items.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('ChartItemsComponent', () => {
   let component: ChartItemsComponent;
@@ -8,10 +9,11 @@ describe('ChartItemsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChartItemsComponent]
+      imports: [ChartItemsComponent],
+      providers: [HttpClient, HttpHandler],
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ChartItemsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

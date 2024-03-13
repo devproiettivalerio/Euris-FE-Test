@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SharedModule } from '../../../../shared/shared.module';
 
 interface DeleteItemDialogData {
 
@@ -11,7 +12,8 @@ interface DeleteItemDialogData {
 
 @Component({
   selector: 'app-delete-item-dialog',
-  standalone: false,
+  standalone: true,
+  imports: [SharedModule],
   templateUrl: './delete-item-dialog.component.html',
   styleUrl: './delete-item-dialog.component.scss',
 })

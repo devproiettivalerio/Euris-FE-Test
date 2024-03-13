@@ -32,8 +32,6 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [DashboardComponent, ThemeSelectComponent],
-
   imports: [
     CommonModule,
     SharedModule,

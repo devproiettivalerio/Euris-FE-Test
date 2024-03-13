@@ -1,20 +1,29 @@
-import { Component, OnDestroy, OnInit, ViewChild, effect, signal } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { StoreService } from '../../services/store.service';
 
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ProductItemDTO, ShopPayload } from '../../models/product-item-dto';
 import { PageEvent } from '@angular/material/paginator';
 import { environment } from '../../../../../environments/environment';
+import { SharedModule } from '../../../../shared/shared.module';
+import { ProductItemComponent } from '../product-item/product-item.component';
+import { ChartItemsComponent } from '../chart-items/chart-items.component';
+import { AddItemComponent } from '../add-item/add-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-items-list',
-  standalone: false,
+  standalone: true,
+  imports: [
+    BrowserAnimationsModule,SharedModule,
+    ProductItemComponent,
+    ChartItemsComponent,
+    AddItemComponent,
+  ],
   templateUrl: './items-list.component.html',
   styleUrl: './items-list.component.scss',
 })
-export class ItemsListComponent implements OnInit, OnDestroy {
+export class ItemsListComponent implements OnInit {
   getProductItems$: Observable<ShopPayload<ProductItemDTO>[]> | undefined;
 
   products: ShopPayload<ProductItemDTO>[] | undefined;
@@ -34,10 +43,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     this.RefreshData(environment._shopid_token);
   }
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private storeService: StoreService
-  ) {}
+  constructor(private storeService: StoreService) {}
 
   @ViewChild('drawer') public drawer: any;
   RefreshData(idStore: string) {
@@ -56,7 +62,6 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.storeService
       .getStoreData(environment._shopid_token)
       .subscribe((response) => {
@@ -66,11 +71,6 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
     this.RefreshData(environment._shopid_token);
   }
-
-  ngOnDestroy() {
-
-  }
-
   // Callback
   OnCloseForm() {
     this.drawer.toggle();
@@ -83,7 +83,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     const index = this.products!.indexOf(key, 0);
     if (index > -1) {
       this.products!.splice(index, 1);
-    this.RefreshData(environment._shopid_token);
+      this.RefreshData(environment._shopid_token);
     }
   }
 }

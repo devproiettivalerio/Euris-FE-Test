@@ -3,8 +3,11 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { StoreService } from '../../services/store.service';
 import { AuthService } from '../../../../core/services/auth-service.service';
 import { environment } from '../../../../../environments/environment';
+import { SharedModule } from '../../../../shared/shared.module';
 
 @Component({
+  standalone: true,
+  imports: [SharedModule],
   selector: 'app-employee-select',
   templateUrl: './employee-select.component.html',
   styleUrl: './employee-select.component.scss',

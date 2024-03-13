@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-
-import { OnlineShopModule } from "../../online-shop.module";
 import { SharedModule } from './../../../../shared/shared.module';
 import { EmployeeSelectComponent } from "../../components/employee-select/employee-select.component";
 import { Router } from '@angular/router';
@@ -10,15 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
   standalone: true,
-  imports: [SharedModule, OnlineShopModule],
+  imports: [SharedModule, EmployeeSelectComponent],
 })
 export class LoginPageComponent {
   constructor(private router: Router) {}
 
   OnLoginSuccess() {
-
-    this.reloadComponent(false,'/');
-
+    this.reloadComponent(false, '/');
   }
 
   reloadComponent(self: boolean, urlToNavigateTo?: string) {
