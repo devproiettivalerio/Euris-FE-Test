@@ -1,0 +1,11 @@
+
+<h2 mat-dialog-title>Elimina</h2>
+<mat-dialog-content>
+  <p>Sei sicuro di voler eliminare il prodotto?</p>
+  <p><strong>{{data.title}}</strong></p>
+  <small>ID: {{data.id}}</small>
+  <mat-dialog-actions align="center">
+    <button  (click)="OnCancel($event)" mat-dialog-close mat-button>Annulla</button>
+    <button type="submit" (click)="OnConfirm($event)" mat-button>Conferma</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

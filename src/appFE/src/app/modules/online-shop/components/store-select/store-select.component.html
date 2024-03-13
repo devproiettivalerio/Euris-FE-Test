@@ -1,0 +1,7 @@
+<span>Store:</span>
+<button mat-button [matMenuTriggerFor]="menu"><span>{{this.currentStoreName}}</span></button>
+<mat-menu #menu="matMenu">
+  @for (item of this.stores; track item) {
+    <button mat-menu-item [disabled]="(item.data.name==this.currentStoreName)">{{ item.data.name }}</button>
+  }
+</mat-menu>
