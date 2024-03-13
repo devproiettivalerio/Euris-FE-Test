@@ -1,0 +1,50 @@
+
+    <mat-card
+    class="product-item mat-primary"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ item?.data?.title }}</mat-card-title>
+        <mat-card-subtitle>{{ item?.data?.category }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+            <p><mat-icon> notes</mat-icon>&nbsp;{{ item?.data?.description }}</p>
+            <p>{{ item?.data?.price }} $</p>
+
+            @if((item?.data?.reviews?.length??0)>0){
+
+              <mat-accordion>
+
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <mat-icon> comment</mat-icon>
+                    </mat-panel-title>
+                    <mat-panel-description align="begin">
+                      Reviews ({{item?.data?.reviews?.length}})
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                    @for (rew of item?.data?.reviews; track rew) {
+                      <p>{{ rew }}</p>
+                    }
+                </mat-expansion-panel>
+
+              </mat-accordion>
+
+            }
+            <!--<mat-divider ></mat-divider>-->
+
+      </mat-card-content>
+
+      <mat-card-actions align="end" fxLayout="row" fxLayoutAlign="space-between center" >
+
+        <mat-label fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-icon> supervised_user_circle</mat-icon>
+          &nbsp;
+        {{ item?.data?.employee }}
+        </mat-label>
+
+        <button mat-icon-button (click)="OpenRemoveItemDialog($event)"><mat-icon> delete</mat-icon></button>
+      </mat-card-actions>
+
+    </mat-card>

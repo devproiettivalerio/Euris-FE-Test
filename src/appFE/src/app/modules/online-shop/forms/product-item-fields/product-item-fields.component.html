@@ -1,0 +1,56 @@
+
+<form [formGroup]="form"
+fxFill="True"
+fxLayout="column"
+    fxGrow="1"
+>
+
+  <mat-form-field class="mat-fill" appearance="fill">
+    <mat-label>Titolo</mat-label>
+    <input #title matInput placeholder="title" formControlName="title" maxlength="255" required="true">
+    <mat-hint>Max 255 caratteri ({{title.value.length}}/255)</mat-hint>
+
+    <mat-error class="mat-warn" *ngIf="form.get('title')?.errors?.['required']">Titolo è obbligatorio.</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="mat-accent" >
+    <mat-label>Catagoria</mat-label>
+    <input #category matInput placeholder="category" formControlName="category" maxlength="255" required="true">
+    <mat-hint>Max 255 caratteri ({{category.value.length}}/255)</mat-hint>
+    <mat-error class="mat-warn" *ngIf="form.get('category')?.errors?.['required']">Catagoria è obbligatorio.</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Descrizione</mat-label>
+    <textarea #description matInput placeholder="description" formControlName="description"maxlength="500" required="true"></textarea>
+    <mat-hint>Max 500 caratteri ({{description.value.length}}/500)</mat-hint>
+    <mat-error class="mat-warn" *ngIf="form.get('description')?.errors?.['required']">Descrizione è obbligatorio.</mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field floatLabel="always">
+    <mat-label>Prezzo</mat-label>
+    <input #price matInput type="number" placeholder="0" formControlName="price" required="true">
+    <span matTextPrefix>$&nbsp;</span>
+    <span matTextSuffix>.00</span>
+    <mat-error class="mat-warn" *ngIf="form.get('price')?.errors?.['required']">Prezzo è obbligatorio.</mat-error>
+    <mat-error class="mat-warn" *ngIf="form.get('price')?.errors?.['min']">Prezzo deve essere maggiore di zero.</mat-error>
+
+  </mat-form-field>
+
+  <!--
+
+  <mat-form-field>
+    <mat-label>Enter your email</mat-label>
+    <input matInput placeholder="pat@example.com" [formControl]="email" required>
+    @if (email.invalid) {
+      <mat-error>{{getErrorMessage()}}</mat-error>
+    }
+  </mat-form-field>
+
+  -->
+
+
+</form>

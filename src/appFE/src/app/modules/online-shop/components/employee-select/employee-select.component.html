@@ -1,0 +1,28 @@
+<div fxLayout="column" fxFill="True" fxGrow="1" fxLayoutAlign="center center">
+  <mat-card class="mat-warn">
+    <mat-card-header color="mat-primary">
+      <mat-card-title>{{ this.storeName }}</mat-card-title>
+      <mat-card-subtitle>{{ this.storeCategory }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="mdc-theme--primary">
+      <mat-selection-list
+        #employeer
+        [multiple]="false"
+        (selectionChange)="OnChangeEmployer($event)"
+      >
+        @for (employeer of employees; track employeer) {
+        <mat-list-option [value]="employeer">{{ employeer }}</mat-list-option>
+        }
+      </mat-selection-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-button
+        [disabled]="employeer._value == null"
+        (click)="SelectEmployer($event)"
+      >
+        Accedi
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

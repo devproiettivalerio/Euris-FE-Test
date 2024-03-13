@@ -1,24 +1,26 @@
 <mat-toolbar>
-  <span>My Application</span>
+  <span>
+    {{appName}}
+  </span>
+
+    <span class="spacer"></span>
+
+    @if(currentEmployer!=null){
+
+      <span>Employer: {{currentEmployer}}</span>
+
+    <button mat-button (click)="Logout()">
+      <mat-icon> exit_to_app</mat-icon>
+    </button>
+
+    }
+
+    <app-theme-select></app-theme-select>
+
+
 </mat-toolbar>
+<div class="app-dashboard">
 
+<router-outlet></router-outlet>
 
-
-<mat-card>
-        <mat-card-content>
-
-
-      @defer {
-
-        <app-items-list></app-items-list>
-
-      } @placeholder {
-        Placeholder
-      } @loading {
-        Loading...
-      } @error {
-        Something went wrong :(
-      }
-
-    </mat-card-content>
-</mat-card>
+</div>

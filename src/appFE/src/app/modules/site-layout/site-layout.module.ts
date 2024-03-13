@@ -1,20 +1,43 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
+
 import { SharedModule } from '../../shared/shared.module';
 
+import { OnlineShopModule } from '../online-shop/online-shop.module';
+
+import { DashboardComponent } from './containers/dashboard/dashboard.component';
+import { ThemeSelectComponent } from './components/theme-select/theme-select.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    redirectTo: 'shop',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    children: [
+      {
+        path: 'shop',
+        component: DashboardComponent,
+        loadChildren: () =>
+          import('../online-shop/online-shop.module').then(
+            (m) => m.OnlineShopModule
+          ),
+      },
+    ],
   },
 ];
 
 
 @NgModule({
-  declarations: [],
-  imports: [SharedModule, CommonModule, RouterModule.forChild(routes)],
+  declarations: [DashboardComponent, ThemeSelectComponent],
+
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes)],
+
 })
 export class SiteLayoutModule {}
