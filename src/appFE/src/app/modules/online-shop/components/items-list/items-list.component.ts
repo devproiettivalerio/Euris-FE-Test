@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { StoreService } from '../../services/store.service';
 
-import { Observable, Subject } from 'rxjs';
 import { ProductItemDTO, ShopPayload } from '../../models/product-item-dto';
 import { PageEvent } from '@angular/material/paginator';
 import { environment } from '../../../../../environments/environment';
@@ -9,13 +8,12 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { ChartItemsComponent } from '../chart-items/chart-items.component';
 import { AddItemComponent } from '../add-item/add-item.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-items-list',
   standalone: true,
   imports: [
-    BrowserAnimationsModule,SharedModule,
+    SharedModule,
     ProductItemComponent,
     ChartItemsComponent,
     AddItemComponent,
@@ -24,7 +22,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   styleUrl: './items-list.component.scss',
 })
 export class ItemsListComponent implements OnInit {
-  getProductItems$: Observable<ShopPayload<ProductItemDTO>[]> | undefined;
 
   products: ShopPayload<ProductItemDTO>[] | undefined;
   storeName: any;

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
-import { OnlineShopModule } from '../../online-shop.module';
 import { ItemsListComponent } from '../../components/items-list/items-list.component';
 
 @Component({

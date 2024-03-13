@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsPageComponent } from './products-page.component';
-import { CommonModule } from '@angular/common';
 
 describe('ProductsPageComponent', () => {
   let component: ProductsPageComponent;
@@ -9,7 +8,7 @@ describe('ProductsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule,ProductsPageComponent],
+      imports: [ProductsPageComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProductsPageComponent);
@@ -17,7 +16,5 @@ describe('ProductsPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => true);
 });

@@ -18,7 +18,6 @@ describe('DashboardComponent', () => {
       imports: [
         RouterModule,
         SharedModule,
-        EmployeeSelectComponent,
         ThemeSelectComponent,
       ],
       providers: [AuthService],

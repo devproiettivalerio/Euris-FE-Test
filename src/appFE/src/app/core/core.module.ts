@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from './services/auth-service.service';
 
@@ -16,14 +15,10 @@ import { AuthService } from './services/auth-service.service';
     HttpClientModule,
     ActivatedRoute,
     provideHttpClient(),
-    provideAnimationsAsync(),
-
     AuthService,
   ],
 })
-export class CoreModule {
-
-}
+export class CoreModule {}
 
 /* Some utils */
 export type FormGroupOf<T> = {
