@@ -1,0 +1,98 @@
+<mat-drawer-container class="layout_container" hasBackdrop="true">
+  <mat-drawer #drawer mode="over">
+    <app-add-item
+      (ItemAddedEvent)="OnItemAdded($event)"
+      (ClosedForm)="OnCloseForm()"
+    >
+    </app-add-item>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div
+      fxLayout="column"
+      fxLayout.gt-xs="column"
+      fxLayout.gt-sm="column"
+      fxLayout.gt-md="row"
+      fxLayout.gt-lg="row"
+      fxGrow="1">
+
+      <mat-card
+        fxFlex="20">
+        <mat-card-header fxLayout="column">
+          <h1>{{ storeName }}</h1>
+
+          <h3>{{ storeCategory }}</h3>
+        </mat-card-header>
+        <mat-card-content>
+          <app-chart-items></app-chart-items>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <button mat-raised-button (click)="drawer.toggle()">
+            <mat-icon> add</mat-icon>
+            Aggiungi nuovo prodotto
+          </button>
+        </mat-card-footer>
+      </mat-card>
+
+      <mat-card
+        fxFlex="80">
+
+        <div fxLayout="row wrap">
+
+          <mat-button-toggle-group #column="matButtonToggleGroup">
+            <mat-button-toggle
+              value="1"
+              (change)="grid_view.classList.add('column')"
+            >
+              <mat-icon>view_list</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle
+              value="0"
+              (change)="grid_view.classList.remove('column')"
+            >
+              <mat-icon>view_module</mat-icon>
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <p class="spacer"></p>
+
+          <mat-paginator
+            #paginator
+            (page)="handlePageEvent($event)"
+            [length]="length"
+            [pageSize]="pageSize"
+            [disabled]="false"
+            [showFirstLastButtons]="false"
+            [pageSizeOptions]="[3, 5, 20]"
+            [hidePageSize]="false"
+            [pageIndex]="pageIndex"
+            aria-label="Select page"
+          >
+          </mat-paginator>
+
+        </div>
+
+        <div
+          #grid_view
+          fxLayout.gt-xs="row"
+          fxLayout.gt-sm="row"
+          fxLayout.gt-md="row"
+          fxLayout.gt-lg="row"
+          fxGrow="1"
+          class="display_grid"
+          fxLayoutAlign="center center">
+
+          @for (item of this.products; track item) {
+
+          <app-product-item
+            class="product-item"
+            [item]="item"
+            (ItemRemovedEvent)="OnItemRemoved($event)"
+          ></app-product-item>
+
+          }
+        </div>
+      </mat-card>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

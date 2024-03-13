@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <span>
+    {{appName}}
+  </span>
+
+    <span class="spacer"></span>
+
+    @if(currentEmployer!=null){
+
+      <span>Employer: {{currentEmployer}}</span>
+
+    <button mat-button (click)="Logout()">
+      <mat-icon> exit_to_app</mat-icon>
+    </button>
+
+    }
+
+    <app-theme-select></app-theme-select>
+
+
+</mat-toolbar>
+<div class="app-dashboard">
+
+<router-outlet></router-outlet>
+
+</div>

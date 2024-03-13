@@ -1,0 +1,23 @@
+
+
+
+<mat-card fxFill="true">
+        <mat-card-content>
+
+      @defer {
+
+
+        <app-employee-select
+          (EmployerCacheEvent)="OnLoginSuccess()"
+        ></app-employee-select>
+
+      }@placeholder() {
+        <mat-spinner></mat-spinner>
+      }@loading() {
+        <mat-spinner></mat-spinner>
+      } @error {
+        <mat-error>Ops! Qualcosa è andatao storto. Riprova più tardi.</mat-error>
+      }
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,89 @@
+@use '@angular/material' as mat;
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+@include mat.core();
+
+$light-palette: mat.$indigo-palette;
+$dark-palette: mat.$red-palette;
+/* App Palette */
+// Theming documentation: https: //github.com/angular/components/blob/main/guides/theming.md
+// Define a dark theme
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary:mat.define-palette($light-palette),
+      accent:mat.define-palette($light-palette),
+      warn: mat.define-palette($light-palette),
+    ),
+    // Only include `typography` and `density` in the default dark theme.
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+// Define a light theme
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary:mat.define-palette($light-palette),
+      accent:mat.define-palette($light-palette),
+      warn: mat.define-palette($light-palette),
+    ),
+    // Only include `typography` and `density` in the default dark theme.
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($light-theme);
+.dark {
+  @include mat.all-component-colors($dark-theme);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+html {
+    --mat-app-background-color:mat-color($accent-a100red, hover, 0.12);
+    --mat-app-text-color: rgba(0, 0, 0, .87);
+    --mat-app-primary: mat.get-theme-color($light-theme, primary, A100);
+}
+.mat-mdc-card {
+  margin: 16px;
+  display: flex;
+}
+.mdc-button {
+  margin: 16px;
+}
+.mat-accent{
+    background-color:mat.get-theme-color($light-theme, accent, A100) !important;
+}
+.mat-primary{
+    background-color:mat.get-theme-color($light-theme, primary, default) !important;
+}
+.mat-warn{
+
+    color: rgba(182, 2, 2, 0.87) !important;
+    font-weight: bold;
+    background-color:mat.get-theme-color($light-theme, accent, A100) !important;
+}
+
+
+.mat-mdc-card.mat-primary,
+.mat-mdc-card.mat-accent {
+  color:white;
+}
+/* Rest css */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+body {
+  margin: 0;
+  font: mat.get-theme-typography($light-theme, body-1);
+  letter-spacing: mat.get-theme-typography($light-theme, body-1, letter-spacing);
+}
+
